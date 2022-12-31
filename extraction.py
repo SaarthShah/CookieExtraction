@@ -1,10 +1,7 @@
 import http.cookiejar as cookiejar
 import browsercookie
 import json
-import myfitnesspal
-import http.cookiejar as cookielib
 import http.cookiejar as cookiejar
-import browser_cookie3
 
 # Extracts all the user cookies from the browser and saves them in a file
 
@@ -28,6 +25,8 @@ def download_cookies():
     with open('cookies.json', 'w') as f:
         json.dump(cookiefiles, f)
 
+
+def load_cookies():
     # Reading the cookies from the JSON file
     with open('cookies.json', 'r') as f:
         data2 = json.load(f)
@@ -37,10 +36,10 @@ def download_cookies():
     for cookie in data2:
         jar2.set_cookie(cookiejar.Cookie(**cookie))
 
-    client = myfitnesspal.Client(jar2)
-
-    print(client.get_date(2022, 8, 1).goals)
+    # Return the CookieJar object
+    return jar2
 
 
 # Calling the function
 download_cookies()
+load_cookies()
